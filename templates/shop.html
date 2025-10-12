@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Shop - Coffo{% endblock %}
+
+{% block content %}
+<!-- shop section start -->
+<div class="coffee_section layout_padding">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="coffee_taital">Our Coffee Shop</h1>
+            <p class="text-center">Discover our premium coffee products and accessories</p>
+         </div>
+      </div>
+   </div>
+   
+   <div class="container mt-5">
+      <div class="row">
+   {% for product in products|slice:":3" %}  <!-- Loop through the first three products -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+               <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"> <!-- Product image -->
+               <div class="card-body">
+                  <h5 class="card-title">{{ product.name }}</h5>  <!-- Product name -->
+                  <p class="card-text">{{ product.description }}</p> <!-- Product description -->
+                  <p class="h5 text-primary">R{{ product.price }}</p>   <!-- Product price -->
+               </div>
+               <div class="card-footer">
+                  <form action="{% url 'cart:cart_add' product.id %}" method="post" class="d-inline">
+                     {% csrf_token %}  <!-- CSRF token for security -->
+                     <input type="hidden" name="quantity" value="1">  
+                     <input type="hidden" name="update" value="false">
+                     <button type="submit" class="btn btn-primary">Add to Cart</button>
+                  </form>
+               </div>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
+      
+      <div class="row mt-4">
+         <div class="col-12 text-center">
+            <a href="{% url 'cart:product_list' %}" class="btn btn-outline-primary btn-lg">View All Products</a>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- shop section end -->
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<div class="about_section layout_padding">
+  <div class="container">
+    <h1 class="about_taital" style="text-align:center;">Search</h1>
+    <form method="get" action="{% url 'search' %}" class="form-inline" style="display:block; margin-top:20px; justify-content:center;">
+      <input type="text" name="q" value="{{ query }}" class="mail_text" placeholder="Search products, blog posts, categories, comments..." style="width:90%; min-width:350px; font-size:20px; padding:18px 24px; border-radius:40px;">
+      <button type="submit" class="btn" style="margin-left:10px;background:#f01c1c;color:#fff;border-radius:40px;padding:16px 32px; font-size:20px;">Search</button>
+    </form>
+  </div>
+
+  <div class="container-fluid"> 
+      {% if query %}
+      <div style="margin-top:40px;">
+        <h2>Products</h2>
+        {% if product_results %}
+          <div class="row" style="margin-top:10px;">
+            {% for product in product_results %} <!-- Assuming product has fields: image, name, price, slug -->
+              <div class="col-md-4" style="margin-bottom:20px;">
+                <div class="coffee_box">
+                  <div class="coffee_img"><img src="{{ product.image.url }}" alt="{{ product.name }}"></div>  <!-- Product image -->
+                  <h3 class="types_text">{{ product.name }}</h3>  <!-- Product name -->
+                  <p class="looking_text">R{{ product.price }}</p>  <!-- Product price -->
+                  <div class="read_bt"><a href="{% url 'cart:product_detail' product.slug %}">View</a></div>  <!-- Link to product detail page -->
+                </div>
+              </div>
+            {% endfor %}  
+          </div>
+        {% else %}
+          <p>No matching products.</p>
+        {% endif %}
+
+        <h2 style="margin-top:30px;">Blog posts</h2>
+        {% if post_results %} <!-- Assuming post has fields: image, title, excerpt, slug -->
+          <div class="row" style="margin-top:10px;">
+            {% for post in post_results %}  <!-- Loop through blog posts -->
+              <div class="col-md-6" style="margin-bottom:20px;">
+                <div class="blog_box">
+                  <div class="blog_img"><img src="{{ post.image.url }}" alt="{{ post.title }}"></div>
+                  <h4 class="prep_text">{{ post.title }}</h4>  <!-- Blog post title -->
+                  <p class="lorem_text">{{ post.excerpt }}</p>  <!-- Blog post excerpt -->
+                  <div class="read_btn"><a href="{% url 'blog:post_detail' post.slug %}">Read More</a></div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p>No matching blog posts.</p>
+        {% endif %}
+      </div>
+      {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{#
+  Login template
+
+  Context expected:
+  - messages: Django messages framework messages (optional)
+
+  Note: this template uses minimal server-side form rendering and
+  expects the view to validate and provide messages. The inline CSS is
+  for a compact demo layout and can be moved to static CSS files.
+#}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<style>
+  .auth-wrapper { padding: 100px 0; }
+  .user_card {
+    width: 380px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 25px;
+    background: #fff;
+  }
+  #form-title{ width:100%; font-size:32px; color:#252525; font-weight:bold; text-align:center; text-transform:uppercase; margin:0; }
+  .log-in-text{ width:100%; font-size:16px; color:#2e2e2d; background:#efefef; padding:11px 25px; margin-top:10px; border:0; border-radius:40px; font-family:sans-serif; }
+  .login_btn{ width:100%; background:#f01c1c; color:#fefefd; border-radius:100px; }
+  .login_btn:hover{ background:#efefef; color:#2e2e2d; }
+  #messages{ background:grey; color:#fff; padding:10px; margin-top:10px; border-radius:8px; }
+</style>
+
+<div class="container auth-wrapper">
+  <div class="d-flex justify-content-center">
+    <div class="user_card">
+      <div class="d-flex justify-content-center">
+        <h3 id="form-title">LOGIN</h3>
+      </div>
+  <!-- Form container: POSTs username/password to the current URL -->
+  <div class="d-flex justify-content-center form_container" style="margin-top:20px;">
+        <form method="POST" action="">
+          {% csrf_token %} 
+          <div class="input-group mb-3">
+            <input type="text" name="username" placeholder="Username..." class="log-in-text">
+          </div>
+          <div class="input-group mb-2">
+            <input type="password" name="password" placeholder="Password..." class="log-in-text">
+          </div>
+          <div class="d-flex justify-content-center mt-3 login_container">
+            <input class="btn login_btn" type="submit" value="Login">
+          </div>
+        </form>
+      </div>
+
+      {# Render any messages provided by the view (success/error) #}
+      {% for message in messages %}
+        <p id="messages">{{ message }}</p>
+      {% endfor %}
+
+      <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+          Don't have an account? <a href="{% url 'registration:signup' %}" class="ml-2">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

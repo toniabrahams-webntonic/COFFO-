@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Shopping Cart - Coffo{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="coffee_taital">Your Shopping Cart</h1>
+    
+    {# If the cart is non-empty, iterate items; otherwise show empty state #}
+    {% if cart %}
+        {% with total_items=cart|length %}
+        <div class="row">
+            <div class="col-md-8">
+                {# List each cart item; items expose 'product', 'price', 'quantity', 'total_price' #}
+                {% for item in cart %}
+                    {% with product=item.product %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {% if product.image %}
+                                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid rounded">
+                                    {% else %}
+                                        <img src="{% static 'images/img-1.png' %}" alt="Product image" class="img-fluid rounded">
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>{{ product.name }}</h5>
+                                    <p class="text-muted">{{ product.description|truncatewords:20 }}</p>
+                                    {# Inline form to update an item's quantity; posts to cart_add with update=true #}
+                                    <form action="{% url 'cart:cart_add' product.id %}" method="post" class="d-inline-flex align-items-center">
+                                        {% csrf_token %}
+                                        <div class="form-group mb-0 mr-2">
+                                            <label for="quantity-{{ product.id }}" class="sr-only">Quantity</label>
+                                            <input type="number" name="quantity" value="{{ item.quantity }}" 
+                                                   min="1" max="10" class="form-control" id="quantity-{{ product.id }}" 
+                                                   style="width: 80px;">
+                                        </div>
+                                        <input type="hidden" name="update" value="true">
+                                        <button type="submit" class="btn btn-primary btn-sm ms-2">Update</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-3 text-end">
+                                    {# Remove button posts to cart_remove for the product #}
+                                    <form action="{% url 'cart:cart_remove' product.id %}" method="post" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                                    </form>
+                                    <div class="mt-2">
+                                        <strong>R{{ item.price }}</strong> x {{ item.quantity }} = <strong>R{{ item.total_price }}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endwith %}
+                {% endfor %}
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Cart Summary</h5>
+                        <p><strong>Total Items:</strong> {{ total_items }}</p>
+                        <p><strong>Total Price:</strong> R{{ cart.get_total_price }}</p>
+                        <hr>
+                        <a href="{% url 'cart:product_list' %}" class="btn btn-secondary btn-block">Continue Shopping</a>
+                        <a href="#" class="btn btn-primary btn-block mt-2">Proceed to Checkout</a>
+                        <form action="{% url 'cart:cart_clear' %}" method="post" class="d-inline-block w-100 mt-2">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger btn-block" onclick="return confirm('Are you sure you want to clear your cart?')">Clear Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endwith %}
+    {% else %}
+        <div class="text-center py-5">
+            <h3>Your cart is empty</h3>
+            <p>Discover our amazing coffee products!</p>
+            <a href="{% url 'cart:product_list' %}" class="btn btn-primary btn-lg">Start Shopping</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

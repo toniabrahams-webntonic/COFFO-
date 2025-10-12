@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Reservation - Coffo{% endblock %}
+
+{% block content %}
+    
+
+<div class="layout_padding">
+    {% if messages %}   <!-- display messages -->
+        <div class="col-sm-12">
+            {% for message in messages %}   <!-- loop through messages -->
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="reserve-bg">
+        <div class="reservation overlay-top overlay-bottom">
+            <div>
+                <div class="reserve-left">
+                    <div class="reserve-info">
+                        <div>
+                            <h1>Online Reservation</h1>
+                        </div>
+                        <p>Don't leave your coffee to chance! Reservations are recommended, especially for groups.
+                            Book your table online in just a few taps. We can't wait to see you!
+                        </p>
+                        <ul>
+                            <li class="mr-3"><i class="fa fa-check text-primary mr-3"></i>100% Quality</li>
+                            <li class="mr-3"><i class="fa fa-check text-primary mr-3"></i>Variety</li>
+                            <li class="mr-3"><i class="fa fa-check text-primary mr-3"></i>Affordable</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="reserve-right">
+                    <div class="reserve-form">
+                        <h1>Book your table</h1>
+                        <form method="post" class="mb-5">
+                            {% csrf_token %}    <!-- CSRF token for security purposes-->
+
+                            {{ form.name }} <!-- Render the name field -->
+
+                            {{ form.email }}    <!-- Render the email field -->
+
+                            {{ form.phone }}   <!-- Render the phone field -->
+
+                            {{ form.reservation_date }}  <!-- Render the reservation date field -->
+
+                            {{ form.reservation_time }}  <!-- Render the reservation time field -->
+
+                            {{ form.num_people }}  <!-- Render the number of people field -->   
+
+                            <button class="btn-reserve mb-2" type="submit">Reserve</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About - Coffo{% endblock %}
+
+{% block content %}
+<!-- about section start -->
+<div class="about_section layout_padding">
+   <div class="container">
+      <div class="about_section_2">
+         <div class="row">
+            <div class="col-md-6"> 
+               <div class="about_taital_box">
+                  <h1 class="about_taital">About Our shop</h1> <!-- Main heading for the about section -->
+                  <h1 class="about_taital_1">Coffee Buzz</h1>
+                  <div class="about_text"><strong>Our Mission:</strong> To provide high-quality, ethically sourced coffee that delights our customers and supports sustainable farming practices.</div>
+                  <div class="about_text"><strong>Our Vision:</strong> To be a leading coffee brand known for exceptional taste, community engagement, and environmental responsibility.</div>
+                  <div class="about_text"><strong>Our Values:</strong> Quality, Integrity, Sustainability, Customer Satisfaction, and Community.</div>   
+                  <p class= "about_text">Coffee distribution in South Africa involves a wide range of national and regional wholesalers, roasters, importers, and retailers catering to the hospitality, corporate, and home markets. Major players like Peacock Tea & Coffee, Ciro, and VDP Distributors (Douwe Egberts) have established distribution networks covering various provinces, supported by companies specializing in office solutions and specialty beans such as Bean There Coffee and Terbodore.</p>
+               </div>
+            </div>
+            <div class="col-md-6"> 
+               <div class="image_iman"><img src="{% static 'images/about-img.png' %}" class="about_img"></div> <!-- Image representing the about section -->
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- about section end -->
+{% endblock %}

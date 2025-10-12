@@ -1,0 +1,99 @@
+{% extends 'base.html' %} {# inherit site-wide layout #}
+{% load static %} {# static template tag for assets #}
+
+{% block title %}{{ post.title }} - Coffo{% endblock %} {# page title uses the post title #}
+
+{% block content %} {# main content block for the blog post detail page #}
+<!-- blog detail section start -->
+<div class="blog_section layout_padding">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-8 mx-auto">
+            <!-- Back to Blog Link -->
+            <div class="mb-4">
+               <a href="{% url 'blog:post_list' %}" class="btn btn-secondary"> {% comment %} this is to go back to Blog {% endcomment %}
+                  <i class="fa fa-arrow-left"></i> Back to Blog
+               </a>
+            </div>
+            
+            <!-- Blog Post -->
+            <article class="blog_box">
+               <div class="blog_img text-center">
+                  {% if post.image %}
+                     <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded">
+                  {% else %}
+                     <img src="{% static 'images/blog-img1.png' %}" alt="Default blog image" class="img-fluid rounded">
+                  {% endif %}
+               </div>
+               
+               <div class="mt-4">
+                  <h4 class="date_text">{{ post.created|date:"d F Y" }}</h4>
+                  <h1 class="prep_text">{{ post.title }}</h1>
+                  <p class="text-muted">
+                     Category: <a href="{% url 'blog:post_list_by_category' post.category.slug %}">{{ post.category.name }}</a>
+                  </p>
+                  
+                  <div class="lorem_text">
+                     {{ post.content|linebreaks }}
+                  </div>
+               </div>
+            </article>
+
+            <!-- Comments Section -->
+            {# Comments count and the form below rely on 'comments' and 'comment_form' in context #}
+            <div class="mt-5">
+               <h3 class="about_taital">Comments ({{ comments.count }})</h3>
+               
+               <!-- Comment Form -->
+               <div class="card mb-4">
+                  <div class="card-body">
+                     <h5 class="card-title">Leave a Comment</h5>
+                     <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                           <label for="{{ comment_form.name.id_for_label }}">Name</label>
+                           {{ comment_form.name }}
+                           {% if comment_form.name.errors %}
+                              <div class="text-danger">{{ comment_form.name.errors }}</div>
+                           {% endif %}
+                        </div>
+                        <div class="form-group">
+                           <label for="{{ comment_form.email.id_for_label }}">Email</label>
+                           {{ comment_form.email }}
+                           {% if comment_form.email.errors %}
+                              <div class="text-danger">{{ comment_form.email.errors }}</div>
+                           {% endif %}
+                        </div>
+                        <div class="form-group">
+                           <label for="{{ comment_form.content.id_for_label }}">Comment</label>
+                           {{ comment_form.content }}
+                           {% if comment_form.content.errors %}
+                              <div class="text-danger">{{ comment_form.content.errors }}</div>
+                           {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Comment</button>
+                     </form>
+                  </div>
+               </div>
+
+               <!-- Comments List -->
+               {% for comment in comments %}
+               <div class="card mb-3">
+                  <div class="card-body">
+                     <div class="d-flex justify-content-between">
+                        <h6 class="card-title">{{ comment.name }}</h6>
+                        <small class="text-muted">{{ comment.created|date:"M d, Y H:i" }}</small>
+                     </div>
+                     <p class="card-text">{{ comment.content|linebreaks }}</p>
+                  </div>
+               </div>
+               {% empty %}
+               <p class="text-muted">No comments yet. Be the first to comment!</p>
+               {% endfor %}
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- blog detail section end -->
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{#
+  Signup template
+
+  Context expected:
+  - form: a Django Form with fields username, email, password1, password2
+
+  Warning: the small script at the bottom modifies inputs by index
+  (form_fields[1], form_fields[2], ...). That approach is brittle and
+  can break if the template changes. Prefer adding explicit attributes
+  to form widgets in the view or form class instead.
+#}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+<style>
+  .auth-wrapper { padding: 100px 0; }
+  .user_card {
+    width: 420px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 25px;
+    background: #fff;
+  }
+  #form-title{ width:100%; font-size:32px; color:#252525; font-weight:bold; text-align:center; text-transform:uppercase; margin:0; }
+  .login_btn{ width:100%; background:#f01c1c; color:#fefefd; border-radius:100px; }
+  .login_btn:hover{ background:#efefef; color:#2e2e2d; }
+</style>
+
+<div class="container auth-wrapper">
+  <div class="d-flex justify-content-center">
+    <div class="user_card">
+      <div class="d-flex justify-content-center">
+        <h3 id="form-title">SIGN UP</h3>
+      </div>
+  <!-- Form container: renders the Django user creation form -->
+  <div class="d-flex justify-content-center form_container" style="margin-top:20px;">
+        <form method="POST" action="">
+          {% csrf_token %}
+          <div class="input-group mb-3">
+            {{ form.username }}
+          </div>
+          <div class="input-group mb-2">
+            {{ form.email }}
+          </div>
+          <div class="input-group mb-2">
+            {{ form.password1 }}
+          </div>
+          <div class="input-group mb-2">
+            {{ form.password2 }}
+          </div>
+          <div class="d-flex justify-content-center mt-3 login_container">
+            <button class="btn login_btn" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+  {# Show form errors if validation failed; Django will populate this #}
+  {{ form.errors }}
+      <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+          Already have an account? <a href="{% url 'registration:login' %}" class="ml-2">Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+  Small script to enhance form widgets. Note: this code selects
+  inputs by index which is fragile; prefer using explicit widget attrs
+  in the form class for robust behavior.
+-->
+<script>
+  // Enhance default Django widgets (fragile: uses input index positions)
+  var form_fields = document.getElementsByTagName('input');
+  if (form_fields.length >= 5) {
+    form_fields[1].placeholder='Username..';
+    form_fields[2].placeholder='Email..';
+    form_fields[3].placeholder='Enter password...';
+    form_fields[4].placeholder='Re-enter Password...';
+  }
+  for (var i=0;i<form_fields.length;i++){
+    form_fields[i].className += ' form-control';
+    form_fields[i].style.borderRadius = '40px';
+    form_fields[i].style.background = '#efefef';
+    form_fields[i].style.padding = '11px 20px';
+    form_fields[i].style.marginTop = '10px';
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,258 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>{% block title %}Coffo{% endblock %}</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+      <!-- custom css-->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+      <!-- fevicon -->
+      <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/gif" />
+      <!-- font css -->
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+   </head>
+   <body {% if request.path == '/' %}class="homepage"{% endif %}>
+   <div class="header_section {% if request.path != '/' %}header_bg{% endif %}" data-default-banner="{% static 'images/banner.jpg' %}">
+         <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+               <a class="navbar-brand"href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="Coffo logo"></a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto">
+                     <li class="nav-item {% if request.path == '/' %}active{% endif %}"> {% comment %} Home is the only page with URL '/' {% endcomment %}
+                        <a class="nav-link" href="{% url 'index' %}">Home</a> {% comment %} this links to the homepage {% endcomment %}   
+                     </li>
+                     <li class="nav-item {% if request.path == '/about/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'about' %}">About</a> {% comment %} this links to the about page {% endcomment %}
+                     </li>
+                     <li class="nav-item {% if request.path == '/coffees/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'coffees' %}">Coffees</a> {% comment %} this links to the coffees page {% endcomment %}
+                     </li>
+                     <li class="nav-item {% if request.path == '/shop/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'shop' %}">Shop</a> {% comment %} this links to the shop page {% endcomment %}
+                     </li>
+                     <li class="nav-item {% if request.path == '/blog/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'blog:post_list' %}">Blog</a> {% comment %} this links to the blog page {% endcomment %}
+                     </li>
+                     <li class="nav-item {% if request.path == '/contact/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'core:contact' %}">Contact</a>   {% comment %} this links to the contact page {% endcomment %}
+                     </li>   
+                     <li class="nav-item {% if request.path == '/reserve/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'core:reserve' %}">Reserve</a>   {% comment %} this links to the reserve page {% endcomment %}
+                     </li>           
+                  </ul>
+                     <form class="form-inline my-2 my-lg-0"       
+                        <div class="login_bt">                       
+                           {% if user.is_authenticated %} {% comment %} If the user is logged in, show the logout link {% endcomment %}
+                           <li><a href="{% url 'registration:logout' %}">LogOut</a></li> {% comment %} This links to the logout view {% endcomment %}                 
+                           {% else %}
+                           <li><a href="{% url 'registration:login' %}"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Login</a></li>
+                           {% endif %}
+                           <li><a href="{% url 'search' %}"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                           <li><a href="{% url 'cart:cart_detail' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 
+                              {% with total_items=cart|length %} {# Gets the total number of items in the cart #}
+                                 {% if total_items > 0 %} {# Only show the count if there are items in the cart #}
+                                    ({{ total_items }}) {% comment %} Display the number of items in the cart {% endcomment %}
+                                 {% else %}
+                                    (0) {% comment %} Display 0 if the cart is empty {% endcomment %}
+                                 {% endif %}
+                              {% endwith %}
+                           </a></li>
+                        </ul>
+                     </div>
+                  </form>
+               </div>
+            </nav>
+            </div>
+            {% comment %} {% block header_banner %}{% endblock %} {% endcomment %}
+         </div>
+      {% block content %}
+      {% endblock %}
+
+      <!-- footer section start -->
+      <div class="footer_section layout_padding margin_top90">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="footer_social_icon">
+                     <ul>
+                        <li><a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="https://x.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="https://za.linkedin.com/"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.instagram.com/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                     </ul>
+                  </div> 
+                  <div class="location_text">
+                     <ul>
+                        <li>
+                           <a href="#">
+                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">+01 1234567890</span>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">demo@gmail.com</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="form-group">
+                     <textarea class="update_mail" placeholder="Your Email" rows="5" id="comment" name="Your Email"></textarea>
+                     <div class="subscribe_bt"><a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- footer section end -->
+      <!-- copyright section start -->
+      <div class="copyright_section">
+         <div class="container">
+            <div class="row">
+               <div class="col-sm-12">
+                  <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free Html Templates</a>
+                  Distribution by <a href="https://themewagon.com">ThemeWagon</a></p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- copyright section end -->
+      <!-- Javascript files-->
+   <!-- load jQuery first -->
+   <script src="{% static 'js/jquery.min.js' %}"></script>
+   <!-- Bootstrap bundle (includes Popper) -->
+   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+   <!-- plugins and slider -->
+   <script src="{% static 'js/plugin.js' %}"></script>
+   <script src="{% static 'js/slider-setting.js' %}"></script>
+   <!-- sidebar -->
+   <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+   <script src="{% static 'js/custom.js' %}"></script>
+   <script> 
+            // slider-setting.js
+      document.addEventListener('DOMContentLoaded', function() {
+         // Banner Carousel Functionality
+         const bannerCarousel = document.getElementById('banner_slider');  //Select the banner carousel element
+         if (bannerCarousel) {   // Check if the banner carousel exists on the page 
+            initBannerCarousel(); // Initialize the banner carousel functionality 
+         }
+
+         function initBannerCarousel() {
+            const carouselInner = bannerCarousel.querySelector('.carousel-inner');  // Selects the inner container of the carousel
+            const carouselItems = carouselInner.querySelectorAll('.carousel-item'); // Selects all individual carousel items 
+            const prevButton = bannerCarousel.querySelector('.carousel-control-prev'); //  Selects the previous and next buttons 
+            const nextButton = bannerCarousel.querySelector('.carousel-control-next'); // Selects the previous and next buttons 
+        
+            let currentSlide = 0;   // Tracks the index of the currently displayed slide 
+            const totalSlides = carouselItems.length; // Total number of slides in the carousel 
+
+            // Function to show a specific slide
+            function showSlide(index) {
+                  // Remove active class from all slides
+                  carouselItems.forEach(item => {
+                     item.classList.remove('active'); // Remove the 'active' class from each carousel item
+                  });
+               
+            
+                  // Add active class to current slide
+                  carouselItems[index].classList.add('active');
+                  currentSlide = index;
+            }  
+            // Show the first slide initially
+            // Function to go to next slide
+            function nextSlide() {
+                  let nextIndex = (currentSlide + 1) % totalSlides;
+                  showSlide(nextIndex);
+            }
+
+            // Function to go to previous slide
+            function prevSlide() {
+                  let prevIndex = (currentSlide - 1 + totalSlides) % totalSlides; // Ensures that the index wraps around correctly
+                  showSlide(prevIndex); //shows the previous slide
+            }
+
+            // Event listeners for arrow buttons
+            if (prevButton) {
+                  prevButton.addEventListener('click', function(e) {
+                     e.preventDefault();
+                     prevSlide();
+                  });
+            } //this will prevent the default link behavior and call the prevSlide function when the previous button is clicked
+
+            if (nextButton) {
+                  nextButton.addEventListener('click', function(e) {
+                     e.preventDefault(); // this will prevent the default link behavior and call the nextSlide function when the next button is clicked
+                     nextSlide();
+                  });
+            }
+
+            // Optional: Auto-advance slides every 5 seconds
+            let slideInterval = setInterval(nextSlide, 5000);
+
+            // Pause auto-advance when hovering over carousel
+            bannerCarousel.addEventListener('mouseenter', function() {
+                  clearInterval(slideInterval);
+            });   // Clear the interval to stop auto-advancing when the mouse enters the carousel area
+
+            bannerCarousel.addEventListener('mouseleave', function() {
+                  slideInterval = setInterval(nextSlide, 5000);
+            });   // Restart the interval to resume auto-advancing when the mouse leaves the carousel area
+
+            // Optional: Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                  if (e.key === 'ArrowLeft') {
+                     prevSlide();
+                  } else if (e.key === 'ArrowRight') {
+                     nextSlide();
+                  }
+            });   
+
+
+            
+         }
+
+         // Review SlideShow
+         let slideIndex = 0;
+         showSlides();
+
+         function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+               slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
+               
+            
+            setTimeout(showSlides, 5000); // Change image every 5 seconds
+         }
+
+      });
+   </script>
+
+   </body>
+</html>

@@ -1,0 +1,270 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Coffo - Home{% endblock %}
+
+{% block content %}
+<!-- banner section start --> 
+{% comment %} {% block header_banner %} {% endcomment %}
+<div class="banner_section">
+   <div id="banner_slider" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+         <!-- Slide 1 -->
+         <div class="carousel-item active">
+            <div class="banner_overlay">
+               <div class="banner_content text-center">
+                  <h1 class="banner_taital">Coffee<br>Shop</h1>
+                  <p class="banner_text">more-or-less normal distribution of letters, as opposed to using</p>
+                  <div class="btn_main">
+                     <div class="about_bt active"><a href="{% url 'about' %}">ABOUT US</a></div>   <!-- Update link to About Us page -->
+                     <div class="callnow_bt"><a href="{% url 'core:contact' %}">CALL NOW</a></div> <!-- Update link to Contact page -->
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <!-- Slide 2 -->
+        <div class="carousel-item"> 
+            <div class="banner_overlay">
+               <div class="banner_content text-center">
+                  <h1 class="banner_taital">Premium<br>Coffee</h1>
+                  <p class="banner_text">Discover our exclusive blends and artisanal coffee selections</p>
+                  <div class="btn_main">
+                     <div class="about_bt active"><a href="{% url 'shop' %}">SHOP NOW</a></div> <!-- Update link to Shop page -->
+                     <div class="callnow_bt"><a href="{% url 'coffees' %}">COFFEE</a></div>  <!-- Update link to Coffee page -->
+                  </div>
+               </div>
+            </div>
+         </div>    
+
+         <!-- Slide 3 -->
+        <div class="carousel-item">
+            <div class="banner_overlay">
+               <div class="banner_content text-center">
+                  <h1 class="banner_taital">Coffee<br>Experience</h1>
+                  <p class="banner_text">Join us for the ultimate coffee experience</p>
+                  <div class="btn_main">
+                     <div class="about_bt active"><a href="{% url 'blog:post_list' %}">OUR BLOG</a></div>   <!-- Update link to Blog page -->
+                     <div class="callnow_bt"><a href="{% url 'core:contact' %}">VISIT US</a></div> <!-- Update link to Contact page -->
+                  </div>
+               </div>
+            </div>
+         </div>   
+
+      </div>
+
+      <!-- Controls -->
+      <a class="carousel-control-prev" href="#banner_slider" role="button" data-slide="prev">
+         <i class="fa fa-arrow-left"></i>
+      </a>
+      <a class="carousel-control-next" href="#banner_slider" role="button" data-slide="next">
+         <i class="fa fa-arrow-right"></i>
+      </a>
+   </div>
+</div>
+ 
+{% comment %} {% endblock %} {% endcomment %}
+<!-- banner section end -->
+
+<!-- about section start -->
+<div class="about_section layout_padding">
+   <div class="container">
+      <div class="about_section_2">
+         <div class="row">
+            <div class="col-md-6"> 
+               <div class="about_taital_box">
+                  <h1 class="about_taital">About Our shop </h1>
+                  <h1 class="about_taital_1">Coffee distribution</h1>
+                  <p class="about_text">Coffee distribution in South Africa involves a wide range of national and regional wholesalers, roasters, importers, and retailers catering to the hospitality, corporate, and home markets. Major players like Peacock Tea & Coffee, Ciro, and VDP Distributors (Douwe Egberts) have established distribution networks covering various provinces, supported by companies specializing in office solutions and specialty beans such as Bean There Coffee and Terbodore.</p>
+                  <div class="readmore_btn"><a href="{% url 'about' %}">Read More</a></div>
+               </div>
+            </div>
+            <div class="col-md-6"> 
+               <div class="image_iman"><img src="{% static 'images/about-img.png' %}" class="about_img" alt="About our coffee shop"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- about section end -->
+
+<!-- coffee section start -->
+<div class="coffee_section layout_padding">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="coffee_taital">OUR Coffee OFFER</h1>
+         </div>
+      </div>
+   </div>
+   <div class="coffee_section_2">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-lg-3 col-md-6">
+               <div class="coffee_img"><img src="{% static 'images/img-1.png' %}" alt="Types of Coffee"></div>
+               <div class="coffee_box">
+                  <h3 class="types_text">TYPES OF COFFEE</h3>
+                  <p class="looking_text">looking at its layout. The point of</p>
+                  <div class="read_bt"><a href="{% url 'coffees' %}">Read More</a></div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+               <div class="coffee_img"><img src="{% static 'images/img-2.png' %}" alt="Bean Varieties"></div>
+               <div class="coffee_box">
+                  <h3 class="types_text">BEAN VARIETIES</h3>
+                  <p class="looking_text">looking at its layout. The point of</p>
+                  <div class="read_bt"><a href="{% url 'coffees' %}">Read More</a></div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+               <div class="coffee_img"><img src="{% static 'images/img-3.png' %}" alt="Coffee &amp; Pastry"></div>
+               <div class="coffee_box">
+                  <h3 class="types_text">COFFEE &amp; PASTRY</h3>
+                  <p class="looking_text">looking at its layout. The point of</p>
+                  <div class="read_bt"><a href="{% url 'coffees' %}">Read More</a></div>
+               </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+               <div class="coffee_img"><img src="{% static 'images/img-4.png' %}" alt="Coffee To Go"></div>
+               <div class="coffee_box">
+                  <h3 class="types_text">COFFEE TO GO</h3>
+                  <p class="looking_text">looking at its layout. The point of</p>
+                  <div class="read_bt"><a href="{% url 'coffees' %}">Read More</a></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- coffee section end -->
+
+<!-- client section start -->
+
+<div class="client_section layout_padding">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="about_taital">What Our Customers Say</h1>
+            
+         </div>
+      </div>
+      
+      <div class="client_section_2">
+      {% if reviews %}
+          {% for review in reviews %}
+         <div class="mySlides client_taital_main">
+            <div class="client_left">
+               <div class="client_img"><img src="{% static 'images/profile.png' %}" alt="Customer {{ review.user.username}}"></div>
+            </div>
+            <div class="client_right">
+               <h3 class="moark_text">{{ review.user.username }}</h3>
+               <div class="rating-stars mb-2">
+                  {% with ''|center:review.rating as range %}  <!-- Create a range for the number of stars -->
+                     <!-- Display filled stars based on the rating -->
+                  {% for _ in range %}⭐{% endfor %}  <!-- Display filled stars based on the rating -->
+                  {% endwith %}
+                  <span class="text-muted">({{ review.rating}}/5)</span>   <!-- Show numeric rating -->
+               </div>
+               <p class="client_text">{{ review.review }}</p>
+               <small class="text-muted">{{ review.date|date:"d M, Y"}}</small>  <!-- Format the date -->
+            </div>
+         </div>
+         {% endfor %}
+      {% else %}
+         <div class="text-center">
+            <p>No reviews yet. Be the first to leave a review!</p>
+         </div>
+      {% endif %}
+      </div>
+
+      {% if user.is_authenticated %}
+         <button id="reviewBtn" style="width: 30%; height: 50px; background: #fefefd; color: #2e2e2d; border: 2px solid #f01c1c; border-radius: 60px; margin-top: 35px; font-weight: bold; font-size: 16px;" 
+                 onmouseover="this.style.background='#f01c1c'; this.style.color='#fefefd'" 
+                 onmouseout="this.style.background='#fefefd'; this.style.color='#2e2e2d'"
+                 onclick="this.style.display='none'; document.getElementById('reviewForm').style.display='block'">
+            Leave a Review
+         </button>
+         
+         {% include 'includes/alerts.html' %}
+
+         <form id="reviewForm" action="{% url 'core:submit_review' %}" method="POST" style="display: none;">
+            {% csrf_token %}
+            <div>
+               <label>Rating:</label>
+               <br>
+               <div class="rate">
+                  <input type="radio" name="rating" id="rating5" value="5" required><label for="rating5" title="5"></label>
+                  <input type="radio" name="rating" id="rating4" value="4" required><label for="rating4" title="4"></label>
+                  <input type="radio" name="rating" id="rating3" value="3" required><label for="rating3" title="3"></label>
+                  <input type="radio" name="rating" id="rating2" value="2" required><label for="rating2" title="2"></label>
+                  <input type="radio" name="rating" id="rating1" value="1" required><label for="rating1" title="1"></label>
+               </div>
+               <br>
+               Review:
+               <textarea name="review" rows="4" class="form-control"></textarea>
+               <br>
+               <input type="submit" value="Submit Review" class="btn btn-primary">
+            </div>
+         </form>
+      {% else %}
+         <p>You must be logged in to leave a review.<span><a href="{% url 'registration:login' %}" class="ml-2 text-primary">Login now</a></span></p>
+      {% endif %}
+   </div>
+</div>
+
+{% comment %} <div class="client_section layout_padding">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="about_taital">What Our Customers Say</h1>
+         </div>
+      </div>
+      <div class="client_section_2">
+         <div class="client_taital_main">
+            <div class="client_left">
+               <div class="client_img"><img src="{% static 'images/client-img1.png' %}" alt="Customer Joy Moark"></div>
+            </div>
+            <div class="client_right">
+               <h3 class="moark_text">Joy Moark</h3>
+               <p class="client_text">now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancynow use Lorem Ipsum as their default model text, </p>
+            </div>
+         </div>
+      </div>
+   </div> {% endcomment %}
+</div>
+<!-- client section end -->
+
+<!-- blog section start -->
+<div class="blog_section layout_padding">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="about_taital">Our Blog</h1>
+         </div>
+      </div>
+      <div class="blog_section_2">
+         <div class="row">
+            <div class="col-md-6">
+               <div class="blog_box">
+                  <div class="blog_img"><img src="{% static 'images/blog-img1.png' %}" alt="Coffee Preparation Techniques"></div>
+                  <h4 class="date_text">05 April</h4>
+                  <h4 class="prep_text">PREP TECHNIQUES Coffee</h4>
+                  <p class="lorem_text">distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a moredistracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more</p>
+               </div>
+               <div class="read_btn"><a href="{% url 'blog:post_list' %}">Read More</a></div>
+            </div>
+            <div class="col-md-6">
+               <div class="blog_box">
+                  <div class="blog_img"><img src="{% static 'images/blog-img2.png' %}" alt="Enjoy Best Coffee"></div>
+                  <h4 class="date_text">05 April</h4>
+                  <h4 class="prep_text">Enjoy Best Coffee</h4>
+                  <p class="lorem_text">distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a moredistracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more</p>
+               </div>
+               <div class="read_btn"><a href="{% url 'blog:post_list' %}">Read More</a></div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- blog section end -->
+{% endblock %}

@@ -1,0 +1,426 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block title %}Coffees - Coffo{% endblock %}
+
+{% block content %}
+<!-- coffee section start -->
+<div class="coffee_section layout_padding">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <h1 class="coffee_taital">OUR Coffee OFFER</h1>
+         </div>
+      </div>
+   </div>
+   <!-- Coffee Section Start -->
+   <div class="coffee_section_2">
+      <div id="main_slider" class="carousel slide" data-ride="carousel">
+         <div class="carousel-inner">
+            <div class="carousel-item active">
+               <div class="container-fluid">
+                  <div class="row">
+                     <div class="col-lg-3 col-md-6">
+                        <div class="coffee_img"><img src="{% static 'images/img-1.png' %}"></div>
+                        <div class="coffee_box">
+                           <h3 class="types_text">TYPES OF COFFEE</h3>
+                           <p class="looking_text">Discover our wide variety of coffee types from around the world.</p>
+                           <div class="read_bt"><a href="#" data-bs-toggle="modal" data-bs-target="#coffeeModal1">Read More</a></div>
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-6">
+                        <div class="coffee_img"><img src="{% static 'images/img-2.png' %}"></div>
+                        <div class="coffee_box">
+                           <h3 class="types_text">BEAN VARIETIES</h3>
+                           <p class="looking_text">Explore our selection of premium coffee beans from different regions.</p>
+                           <div class="read_bt"><a href="#" data-bs-toggle="modal" data-bs-target="#coffeeModal2">Read More</a></div>
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-6">
+                        <div class="coffee_img"><img src="{% static 'images/img-3.png' %}"></div>
+                        <div class="coffee_box">
+                           <h3 class="types_text">COFFEE &amp; PASTRY</h3>
+                           <p class="looking_text">Perfect pairings of our coffee with delicious pastries and desserts.</p>
+                           <div class="read_bt"><a href="#" data-bs-toggle="modal" data-bs-target="#coffeeModal3">Read More</a></div>
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-6">
+                        <div class="coffee_img"><img src="{% static 'images/img-4.png' %}"></div>
+                        <div class="coffee_box">
+                           <h3 class="types_text">COFFEE TO GO</h3>
+                           <p class="looking_text">Enjoy our premium coffee on the go with our convenient takeaway options.</p>
+                           <div class="read_bt"><a href="#" data-bs-toggle="modal" data-bs-target="#coffeeModal4">Read More</a></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Coffee Section End -->
+            <div class="carousel-item">
+               <div class="container-fluid">
+                  <div class="row">
+                     <div class="col-lg-3 col-md-6">
+                        <div class="coffee_img"><img src="{% static 'images/cold-brew.jpg' %}"></div>
+                        <div class="coffee_box">
+                           <h3 class="types_text">COLD BREW</h3>
+                           <p class="looking_text">Refreshing cold brew options for hot summer days.</p>
+                           <div class="read_bt"><a href="#" data-bs-toggle="modal" data-bs-target="#coffeeModal5">Read More</a></div>
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-6">
+                        <div class="coffee_img"><img src="{% static 'images/expresso-1.png' %}"></div>
+                        <div class="coffee_box">
+                           <h3 class="types_text">ESPRESSO</h3>
+                           <p class="looking_text">trong and flavorful espresso shots for true coffee lovers.</p>
+                           <div class="read_bt"><a href="#" data-bs-toggle="modal" data-bs-target="#coffeeModal6">Read More</a></div>
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-6">
+                        <div class="coffee_img"><img src="{% static 'images/cappuccino-1.jpg' %}"></div>
+                        <div class="coffee_box">
+                           <h3 class="types_text">CAPPUCCINO</h3>
+                           <p class="looking_text">Perfectly balanced cappuccino with rich foam and espresso.</p>
+                           <div class="read_bt"><a href="#" data-bs-toggle="modal" data-bs-target="#coffeeModal7">Read More</a></div>
+                        </div>
+                     </div>
+                     <div class="col-lg-3 col-md-6">
+                        <div class="coffee_img"><img src="{% static 'images/latte-art.jpg' %}"></div>
+                        <div class="coffee_box">
+                           <h3 class="types_text">LATTE ART</h3>
+                           <p class="looking_text">Beautifully crafted latte art to enhance your coffee experience.</p>
+                           <div class="read_bt"><a href="#" data-bs-toggle="modal" data-bs-target="#coffeeModal8">Read More</a></div> <!-- Link to the latte art modal using the data-bs-target attribute -->
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <a class="carousel-control-prev" href="#main_slider" role="button" data-bs-slide="prev">  <!-- Updated data-slide to data-bs-slide for Bootstrap 5 -->
+         <i class="fa fa-arrow-left"></i>
+         </a>
+         <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next"> <!-- Updated data-slide to data-bs-slide for Bootstrap 5 -->
+         <i class="fa fa-arrow-right"></i>
+         </a>
+      </div>
+   </div>
+      <!-- Add Coffee Section -->
+   <div class="container add-coffee-section">
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Add More Coffee Options</h3>
+                <p>Want to add more coffee varieties to our collection? Use the form below to suggest new coffee types.</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCoffeeModal">
+                    <i class="fas fa-plus me-2"></i>Add New Coffee
+                </button>
+            </div>
+        </div>
+    </div>
+      <!-- Coffee Detail Modals -->
+    <div class="modal fade coffee-detail-modal" id="coffeeModal1" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">TYPES OF COFFEE</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="coffee-detail-img">
+                                <img src="{% static 'images/img-1.png' %}" alt="Types of Coffee">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p>We offer a wide variety of coffee types from different regions around the world. Each type has its unique flavor profile and characteristics.</p>
+                            <ul class="coffee-features">
+                                <li><i class="fas fa-check"></i> Arabica - Smooth and aromatic</li>
+                                <li><i class="fas fa-check"></i> Robusta - Strong and full-bodied</li>
+                                <li><i class="fas fa-check"></i> Liberica - Unique and fruity</li>
+                                <li><i class="fas fa-check"></i> Excelsa - Tart and fruity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal fade coffee-detail-modal" id="coffeeModal2" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">BEAN VARIETIES</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="coffee-detail-img">
+                                <img src="{% static 'images/img-2.png' %}" alt="Bean Varieties">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Our selection of premium coffee beans comes from the best growing regions worldwide. We carefully source and roast each variety to perfection.</p>
+                            <ul class="coffee-features">
+                                <li><i class="fas fa-check"></i> Ethiopian Yirgacheffe - Floral and citrus notes</li>
+                                <li><i class="fas fa-check"></i> Colombian Supremo - Balanced and nutty</li>
+                                <li><i class="fas fa-check"></i> Sumatra Mandheling - Earthy and full-bodied</li>
+                                <li><i class="fas fa-check"></i> Guatemalan Antigua - Chocolate and spice notes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- Modal 3 -->
+      <div class="modal fade coffee-detail-modal" id="coffeeModal3" tabindex="-1">
+         <div class="modal-dialog modal-lg">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title">COFFEE &amp; PASTRY</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="coffee-detail-img">
+                              <img src="{% static 'images/img-3.png' %}" alt="Coffee &amp; Pastry">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <p>Indulge in the perfect pairing of our premium coffee with a selection of delicious pastries and desserts, crafted to complement each other.</p>
+                           <ul class="coffee-features">
+                              <li><i class="fas fa-check"></i> Freshly baked croissants</li>
+                              <li><i class="fas fa-check"></i> Artisan muffins and scones</li>
+                              <li><i class="fas fa-check"></i> Decadent cakes and tarts</li>
+                              <li><i class="fas fa-check"></i> Gluten-free and vegan options</li>
+                           </ul>
+                        </div>
+                     </div>   
+                  </div>
+               </div>   
+         </div>
+      </div>
+   <!-- Modal 4 -->
+      <div class="modal fade coffee-detail-modal" id="coffeeModal4" tabindex="-1">
+         <div class="modal-dialog modal-lg">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title">COFFEE TO GO</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="coffee-detail-img">
+                              <img src="{% static 'images/img-4.png' %}" alt="Coffee To Go">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <p>Enjoy our premium coffee on the go with our convenient takeaway options. Perfect for busy mornings or when you're out and about.</p>
+                           <ul class="coffee-features">
+                              <li><i class="fas fa-check"></i> Eco-friendly takeaway cups</li>
+                              <li><i class="fas fa-check"></i> Quick service for busy schedules</li>
+                              <li><i class="fas fa-check"></i> Customizable drink options</li>
+                              <li><i class="fas fa-check"></i> Mobile ordering available</li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>   
+      <!-- Modal 5 -->
+      <div class="modal fade coffee-detail-modal" id="coffeeModal5" tabindex="-1">
+         <div class="modal-dialog modal-lg">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title">COLD BREW</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="coffee-detail-img">
+                              <img src="{% static 'images/cold-brew.jpg' %}" alt="Cold Brew">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <p>Experience the smooth and refreshing taste of our cold brew coffee, perfect for hot summer days or whenever you need a cool pick-me-up.</p>
+                           <ul class="coffee-features">
+                              <li><i class="fas fa-check"></i> Slow-steeped for 12 hours</li>
+                              <li><i class="fas fa-check"></i> Served over ice</li>
+                              <li><i class="fas fa-check"></i> Available in various flavors</li>
+                              <li><i class="fas fa-check"></i> Dairy and non-dairy options</li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>   
+         </div>
+      </div>   
+      <!-- Modal 6 -->
+      <div class="modal fade coffee-detail-modal" id="coffeeModal6" tabindex="-1">
+         <div class="modal-dialog modal-lg">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title">ESPRESSO</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="coffee-detail-img">
+                              <img src="{% static 'images/expresso-1.png' %}" alt="Espresso">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <p>Our espresso shots are crafted to deliver a strong and flavorful experience, perfect for true coffee lovers who appreciate the art of espresso making.</p>
+                           <ul class="coffee-features">
+                              <li><i class="fas fa-check"></i> Rich and intense flavor</li>
+                              <li><i class="fas fa-check"></i> Made with freshly ground beans</li>
+                              <li><i class="fas fa-check"></i> Served in traditional demitasse cups</li>
+                              <li><i class="fas fa-check"></i> Available as single or double shots</li>
+                           </ul>
+                        </div>
+                     </div>   
+                  </div>
+               </div>   
+         </div>
+      </div>   
+      <!-- Modal 7 -->
+      <div class="modal fade coffee-detail-modal" id="coffeeModal7" tabindex="-1">
+         <div class="modal-dialog modal-lg">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title">CAPPUCCINO</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="coffee-detail-img">
+                              <img src="{% static 'images/cappuccino-1.jpg' %}" alt="Cappuccino">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <p>Enjoy a perfectly balanced cappuccino with rich foam and bold espresso, crafted to provide a delightful coffee experience.</p>
+                           <ul class="coffee-features">
+                              <li><i class="fas fa-check"></i> Equal parts espresso, steamed milk, and foam</li>
+                              <li><i class="fas fa-check"></i> Topped with a sprinkle of cocoa or cinnamon</li>
+                              <li><i class="fas fa-check"></i> Served in a wide-brimmed cup</li>
+                              <li><i class="fas fa-check"></i> Customizable with flavored syrups</li>
+                           </ul>
+                        </div>
+                     </div>   
+                  </div>
+               </div>   
+         </div>
+      </div>   
+      <!-- Modal 8 -->
+      <div class="modal fade coffee-detail-modal" id="coffeeModal8" tabindex="-1">
+         <div class="modal-dialog modal-lg">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title">LATTE ART</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="coffee-detail-img">
+                              <img src="{% static 'images/latte-art.jpg' %}" alt="Latte Art">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <p>Experience the beauty of latte art, where skilled baristas craft intricate designs on your latte to enhance your coffee experience.</p>
+                           <ul class="coffee-features">
+                              <li><i class="fas fa-check"></i> Beautifully crafted designs</li>
+                              <li><i class="fas fa-check"></i> Made with steamed milk and espresso</li>
+                              <li><i class="fas fa-check"></i> Customizable with various flavors</li>
+                              <li><i class="fas fa-check"></i> Perfect for social media sharing</li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>   
+         </div>
+      </div>
+
+
+    <!-- Add Coffee Modal -->
+    <div class="modal fade" id="addCoffeeModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Coffee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addCoffeeForm">
+                        <div class="mb-3">
+                            <label for="coffeeName" class="form-label">Coffee Name</label>
+                            <input type="text" class="form-control" id="coffeeName" placeholder="Enter coffee name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="coffeeDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="coffeeDescription" rows="3" placeholder="Enter coffee description"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="coffeeImage" class="form-label">Image URL</label>
+                            <input type="text" class="form-control" id="coffeeImage" placeholder="Enter image URL">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitCoffee">Add Coffee</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- coffee section end -->
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+   <script>
+        // Function to add more coffee items to the carousel
+        document.getElementById('submitCoffee').addEventListener('click', function() {
+            const name = document.getElementById('coffeeName').value; // Get coffee name from input field
+            const description = document.getElementById('coffeeDescription').value; // Get description from textarea
+            const imageUrl = document.getElementById('coffeeImage').value; // Get image URL from input field
+            
+            if (!name || !description || !imageUrl) {
+                alert('Please fill in all fields');
+                return;
+            }  // Simple validation to ensure all fields are filled
+            
+            // In a real application, you would send this data to a server
+            // For this demo, we'll just show a success message
+            alert(`"${name}" has been added to our coffee collection!`);   // Show success message
+            
+            // Reset form
+            document.getElementById('addCoffeeForm').reset();  // Clear form fields
+            
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addCoffeeModal'));  // Get modal instance
+            modal.hide();  // Hide the modal
+        });
+        
+        // Initialize carousel with interval
+        const myCarousel = document.getElementById('main_slider');
+        const carousel = new bootstrap.Carousel(myCarousel, {
+            interval: 5000,
+            wrap: true
+        }); // Initialize Bootstrap carousel with 5-second interval and wrap-around
+   </script>
+{% endblock %}
+
+
+    
