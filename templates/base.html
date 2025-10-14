@@ -66,12 +66,12 @@
                      <form class="form-inline my-2 my-lg-0"       
                         <div class="login_bt">                       
                            {% if user.is_authenticated %} {% comment %} If the user is logged in, show the logout link {% endcomment %}
-                           <li><a href="{% url 'registration:logout' %}">LogOut</a></li> {% comment %} This links to the logout view {% endcomment %}                 
+                           <li><a href="{% url 'registration:logout' %}" style="color: #fefefd; padding: 10px; onmouseover="this.style.color='red'" onmouseout="this.style.color='#fefefd'"">LogOut</a></li> {% comment %} This links to the logout view {% endcomment %}                 
                            {% else %}
-                           <li><a href="{% url 'registration:login' %}"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Login</a></li>
+                           <li><a href="{% url 'registration:login' %}" style="color: #fefefd; padding:10px" onmouseover="this.style.color='red'" onmouseout="this.style.color='#fefefd'"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Login</a></li>
                            {% endif %}
-                           <li><a href="{% url 'search' %}"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                           <li><a href="{% url 'cart:cart_detail' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 
+                           <li><a href="{% url 'search' %}" style="color: #fefefd; padding:10px" onmouseover="this.style.color='red'" onmouseout="this.style.color='#fefefd'"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                           <li><a href="{% url 'cart:cart_detail' %}" style="color: #fefefd; padding:10px" onmouseover="this.style.color='red'" onmouseout="this.style.color='#fefefd'"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 
                               {% with total_items=cart|length %} {# Gets the total number of items in the cart #}
                                  {% if total_items > 0 %} {# Only show the count if there are items in the cart #}
                                     ({{ total_items }}) {% comment %} Display the number of items in the cart {% endcomment %}
@@ -113,7 +113,7 @@
                         </li>
                         <li>
                            <a href="#">
-                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">demo@gmail.com</span>
+                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">amaroni@gmail.com</span>
                            </a>
                         </li>
                      </ul>
@@ -132,8 +132,7 @@
          <div class="container">
             <div class="row">
                <div class="col-sm-12">
-                  <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free Html Templates</a>
-                  Distribution by <a href="https://themewagon.com">ThemeWagon</a></p>
+                  <p class="copyright_text">2025 © All rights reserved. Designed by Amaroni</a></p>
                </div>
             </div>
          </div>

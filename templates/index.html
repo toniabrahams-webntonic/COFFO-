@@ -179,7 +179,7 @@
                  onmouseover="this.style.background='#f01c1c'; this.style.color='#fefefd'" 
                  onmouseout="this.style.background='#fefefd'; this.style.color='#2e2e2d'"
                  onclick="this.style.display='none'; document.getElementById('reviewForm').style.display='block'">
-            Leave a Review
+            {% if user_review %}Update Review{% else %}Leave a Review{% endif %}
          </button>
          
          {% include 'includes/alerts.html' %}
@@ -190,17 +190,17 @@
                <label>Rating:</label>
                <br>
                <div class="rate">
-                  <input type="radio" name="rating" id="rating5" value="5" required><label for="rating5" title="5"></label>
-                  <input type="radio" name="rating" id="rating4" value="4" required><label for="rating4" title="4"></label>
-                  <input type="radio" name="rating" id="rating3" value="3" required><label for="rating3" title="3"></label>
-                  <input type="radio" name="rating" id="rating2" value="2" required><label for="rating2" title="2"></label>
-                  <input type="radio" name="rating" id="rating1" value="1" required><label for="rating1" title="1"></label>
+                  <input type="radio" name="rating" id="rating5" value="5" required {% if user_review and user_review.rating == 5 %}checked{% endif %}><label for="rating5" title="5"></label>
+                  <input type="radio" name="rating" id="rating4" value="4" required {% if user_review and user_review.rating == 4 %}checked{% endif %}><label for="rating4" title="4"></label>
+                  <input type="radio" name="rating" id="rating3" value="3" required {% if user_review and user_review.rating == 3 %}checked{% endif %}><label for="rating3" title="3"></label>
+                  <input type="radio" name="rating" id="rating2" value="2" required {% if user_review and user_review.rating == 2 %}checked{% endif %}><label for="rating2" title="2"></label>
+                  <input type="radio" name="rating" id="rating1" value="1" required {% if user_review and user_review.rating == 1 %}checked{% endif %}><label for="rating1" title="1"></label>
                </div>
                <br>
                Review:
-               <textarea name="review" rows="4" class="form-control"></textarea>
+               <textarea name="review" rows="4" class="form-control">{% if user_review %}{{ user_review.review }}{% endif %}</textarea>
                <br>
-               <input type="submit" value="Submit Review" class="btn btn-primary">
+               <input type="submit" value="{% if user_review %}Update Review{% else %}Submit Review{% endif %}" class="btn btn-primary">
             </div>
          </form>
       {% else %}

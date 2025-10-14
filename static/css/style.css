@@ -133,9 +133,9 @@ p {
 }
 
 a {
-    color: white;
+    /* color: white; */
     text-decoration: none;
-    padding: 10px;
+    /* padding: 10px; */
     outline: none !important;
 }
 
@@ -301,7 +301,7 @@ button {
 }
 
 .login_bt li a:hover {
-    color: #f01c1c;
+    color: #f01c1c !important;
 }
 
 .navbar-brand{
@@ -780,7 +780,7 @@ text-align: center;
 }
 
 .blog_section .text-center {
-  font-size: 20px;
+  font-size: large;
 }
 
 .blog_box {
@@ -1078,6 +1078,7 @@ textarea#comment.update_mail::placeholder {
     width: 50%;
     margin: 0 auto;
     text-align: center;
+    gap: 20px;
 }
 
 .subscribe_bt {
