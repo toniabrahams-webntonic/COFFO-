@@ -133,8 +133,9 @@ p {
 }
 
 a {
-    color: #222222;
+    color: white;
     text-decoration: none;
+    padding: 10px;
     outline: none !important;
 }
 
@@ -778,6 +779,10 @@ text-align: center;
     padding-top: 60px;
 }
 
+.blog_section .text-center {
+  font-size: 20px;
+}
+
 .blog_box {
     width: 100%;
     background-color: #ffffff;
@@ -812,7 +817,7 @@ text-align: center;
 
 .lorem_text {
     width: 100%;
-    font-size: 14px;
+    font-size: 16px;
     color: #3b3b3b;
     margin: 0px;
     padding: 0px 20px;

@@ -15,10 +15,6 @@
                <div class="banner_content text-center">
                   <h1 class="banner_taital">Coffee<br>Shop</h1>
                   <p class="banner_text">more-or-less normal distribution of letters, as opposed to using</p>
-                  <div class="btn_main">
-                     <div class="about_bt active"><a href="{% url 'about' %}">ABOUT US</a></div>   <!-- Update link to About Us page -->
-                     <div class="callnow_bt"><a href="{% url 'core:contact' %}">CALL NOW</a></div> <!-- Update link to Contact page -->
-                  </div>
                </div>
             </div>
          </div>
@@ -29,10 +25,6 @@
                <div class="banner_content text-center">
                   <h1 class="banner_taital">Premium<br>Coffee</h1>
                   <p class="banner_text">Discover our exclusive blends and artisanal coffee selections</p>
-                  <div class="btn_main">
-                     <div class="about_bt active"><a href="{% url 'shop' %}">SHOP NOW</a></div> <!-- Update link to Shop page -->
-                     <div class="callnow_bt"><a href="{% url 'coffees' %}">COFFEE</a></div>  <!-- Update link to Coffee page -->
-                  </div>
                </div>
             </div>
          </div>    
@@ -43,10 +35,6 @@
                <div class="banner_content text-center">
                   <h1 class="banner_taital">Coffee<br>Experience</h1>
                   <p class="banner_text">Join us for the ultimate coffee experience</p>
-                  <div class="btn_main">
-                     <div class="about_bt active"><a href="{% url 'blog:post_list' %}">OUR BLOG</a></div>   <!-- Update link to Blog page -->
-                     <div class="callnow_bt"><a href="{% url 'core:contact' %}">VISIT US</a></div> <!-- Update link to Contact page -->
-                  </div>
                </div>
             </div>
          </div>   
@@ -139,6 +127,7 @@
 <!-- coffee section end -->
 
 <!-- client section start -->
+{% with user_review=user.review_set.first %}
 
 <div class="client_section layout_padding">
    <div class="container">
@@ -149,31 +138,39 @@
          </div>
       </div>
       
-      <div class="client_section_2">
+      <div class="client_section_2 position-relative">
       {% if reviews %}
-          {% for review in reviews %}
-         <div class="mySlides client_taital_main">
-            <div class="client_left">
-               <div class="client_img"><img src="{% static 'images/profile.png' %}" alt="Customer {{ review.user.username}}"></div>
-            </div>
-            <div class="client_right">
-               <h3 class="moark_text">{{ review.user.username }}</h3>
-               <div class="rating-stars mb-2">
-                  {% with ''|center:review.rating as range %}  <!-- Create a range for the number of stars -->
-                     <!-- Display filled stars based on the rating -->
-                  {% for _ in range %}⭐{% endfor %}  <!-- Display filled stars based on the rating -->
-                  {% endwith %}
-                  <span class="text-muted">({{ review.rating}}/5)</span>   <!-- Show numeric rating -->
-               </div>
-               <p class="client_text">{{ review.review }}</p>
-               <small class="text-muted">{{ review.date|date:"d M, Y"}}</small>  <!-- Format the date -->
-            </div>
-         </div>
-         {% endfor %}
+          <div class="review-slider">
+              {% for review in reviews %}
+              <div class="mySlides client_taital_main">
+                  <div class="client_left">
+                      <div class="client_img"><img src="{% static 'images/profile.png' %}" alt="Customer {{ review.user.username}}"></div>
+                  </div>
+                  <div class="client_right">
+                      <h3 class="moark_text">{{ review.user.username }}</h3>
+                      <div class="rating-stars mb-2">
+                          {% with ''|center:review.rating as range %}
+                          {% for _ in range %}⭐{% endfor %}
+                          {% endwith %}
+                          <span class="text-muted">({{ review.rating}}/5)</span>
+                      </div>
+                      <p class="client_text">{{ review.review }}</p>
+                      <small class="text-muted">{{ review.date|date:"d M, Y"}}</small>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+          <!-- Review Navigation Arrows -->
+          <a class="review-nav review-prev" role="button" onclick="changeReview(-1)">
+              <i class="fa fa-arrow-left"></i>
+          </a>
+          <a class="review-nav review-next" role="button" onclick="changeReview(1)">
+              <i class="fa fa-arrow-right"></i>
+          </a>
       {% else %}
-         <div class="text-center">
-            <p>No reviews yet. Be the first to leave a review!</p>
-         </div>
+          <div class="text-center">
+              <p>No reviews yet. Be the first to leave a review!</p>
+          </div>
       {% endif %}
       </div>
 
@@ -211,7 +208,6 @@
       {% endif %}
    </div>
 </div>
-
 {% comment %} <div class="client_section layout_padding">
    <div class="container">
       <div class="row">
@@ -232,6 +228,7 @@
       </div>
    </div> {% endcomment %}
 </div>
+{% endwith %}
 <!-- client section end -->
 
 <!-- blog section start -->
@@ -267,4 +264,61 @@
    </div>
 </div>
 <!-- blog section end -->
+
+<!-- Review Slider Styles and Scripts -->
+<style>
+    .review-slider {
+        position: relative;
+    }
+    .mySlides {
+        display: none;
+    }
+    .mySlides:first-child {
+        display: block;
+    }
+    .review-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background: rgba(240, 28, 28, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+    .review-nav:hover {
+        background: rgba(240, 28, 28, 1);
+    }
+    .review-prev {
+        right: 10px;
+    }
+    .review-next {
+        right: -40px;
+    }
+</style>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.getElementsByClassName("mySlides");
+    
+    if (slides.length > 0) {
+        showSlide(currentSlide);
+    }
+    
+    function showSlide(n) {
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[n].style.display = "block";
+    }
+    
+    function changeReview(direction) {
+        currentSlide = (currentSlide + direction + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+</script>
 {% endblock %}

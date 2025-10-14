@@ -4690,7 +4690,6 @@ input[type="button"].btn-block {
 
 .pagination-lg .page-link {
   padding: 0.75rem 1.5rem;
-  font-size: 1.25rem;
   line-height: 1.5;
 }
 
@@ -8705,6 +8704,7 @@ button.bg-dark:focus {
 
 .text-center {
   text-align: center !important;
+  font-size: 1.5rem;
 }
 
 @media (min-width: 576px) {
