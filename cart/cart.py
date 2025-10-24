@@ -9,7 +9,7 @@ Product objects on iteration to attach fresh model instances for
 display in templates.
 """
 
-from decimal import Decimal
+from decimal import Decimal # For precise price calculations
 from django.conf import settings
 from .models import Product  # Use Product model from cart app
 
@@ -31,7 +31,7 @@ class Cart:
     def __init__(self, request):
         # Keep a reference to the session and load (or create) the cart
         self.session = request.session
-        cart = self.session.get(settings.CART_SESSION_ID)
+        cart = self.session.get(settings.CART_SESSION_ID) #tries to get cart from session
         if not cart:
             # Initialize an empty cart in the session
             cart = self.session[settings.CART_SESSION_ID] = {}

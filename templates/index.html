@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 {% load static %}
 
 {% block title %}Coffo - Home{% endblock %}
@@ -303,22 +303,23 @@
 
 <script>
     let currentSlide = 0;
-    const slides = document.getElementsByClassName("mySlides");
+    const slides = document.getElementsByClassName("mySlides"); // Get all review slides
     
     if (slides.length > 0) {
         showSlide(currentSlide);
-    }
+    } // Initialize the first slide so that it shows 
     
-    function showSlide(n) {
-        for (let i = 0; i < slides.length; i++) {
+    function showSlide(n) { // Function to display the slide at index n
+        for (let i = 0; i < slides.length; i++) { 
             slides[i].style.display = "none";
-        }
-        slides[n].style.display = "block";
+        }   //hides all slides
+        slides[n].style.display = "block"; //shows the current slide
     }
     
     function changeReview(direction) {
-        currentSlide = (currentSlide + direction + slides.length) % slides.length;
-        showSlide(currentSlide);
+        currentSlide = (currentSlide + direction + slides.length) % slides.length; 
+        // Update slide index with wrap-around  
+        showSlide(currentSlide); // Update the displayed slide
     }
 </script>
 {% endblock %}

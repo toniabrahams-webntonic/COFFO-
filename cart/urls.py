@@ -13,9 +13,9 @@ app_name = 'cart'
 urlpatterns = [
     # Cart detail and modification views
     path('', views.cart_detail, name='cart_detail'),
-    path('add/<int:product_id>/', views.cart_add, name='cart_add'),
-    path('remove/<int:product_id>/', views.cart_remove, name='cart_remove'),
-    path('clear/', views.cart_clear, name='cart_clear'),
+    path('add/<int:product_id>/', views.cart_add, name='cart_add'), # Add a product to the cart
+    path('remove/<int:product_id>/', views.cart_remove, name='cart_remove'), # Remove a product from the cart
+    path('clear/', views.cart_clear, name='cart_clear'), # Clear all items from the cart
 
     # Product listing and detail pages within the cart app
     path('products/', views.product_list, name='product_list'),

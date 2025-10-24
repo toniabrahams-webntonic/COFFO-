@@ -20,8 +20,8 @@ def product_list(request):
     Returns the ``cart/product_list.html`` template with a ``products``
     context variable containing available Product instances.
     """
-
-    products = Product.objects.filter(available=True)
+    # view for displaying list of products
+    products = Product.objects.filter(available=True) 
     return render(request, 'cart/product_list.html', {'products': products})
 
 
@@ -40,7 +40,7 @@ def product_detail(request, slug):
     })
 
 
-@require_POST
+@require_POST # Only accept POST requests, it handles both add and update
 def cart_add(request, product_id):
     """Add a product to the cart or update its quantity.
 
@@ -64,8 +64,8 @@ def cart_remove(request, product_id):
 
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
-    cart.remove(product)
-    return redirect('cart:cart_detail')
+    cart.remove(product) # Remove the product from the cart using the Cart API
+    return redirect('cart:cart_detail') #reirects to show upated site
 
 
 def cart_detail(request):
@@ -77,12 +77,13 @@ def cart_detail(request):
     ``update=True``).
     """
 
-    cart = Cart(request)
+    cart = Cart(request) # Get the cart current instance
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={
             'quantity': item['quantity'],
             'update': True,
         })
+    #iterate through cart items and add update form to each item
     return render(request, 'cart/cart_detail.html', {'cart': cart})
 
 

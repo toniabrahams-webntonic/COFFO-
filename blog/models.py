@@ -12,7 +12,7 @@ to improve usability and query performance.
 """
 
 from django.db import models
-from django.urls import reverse
+from django.urls import reverse #the reverse function is used to generate URLs based on view names and parameters
 
 
 class Category(models.Model):
@@ -25,20 +25,20 @@ class Category(models.Model):
 
     name = models.CharField(max_length=100)
     # Slug used in URLs; uniqueness prevents duplicate category paths
-    slug = models.SlugField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True) # SlugField is a field for storing URL-friendly strings
 
     class Meta:
         # Order categories alphabetically by name in querysets
         ordering = ['name']
         verbose_name_plural = 'categories'
 
-    def __str__(self):
-        return self.name
+    def __str__(self): # String representation of the Category model
+        return self.name # Return the category name as its string representation
 
     def get_absolute_url(self):
         """Return the canonical URL for this category's post list page."""
         return reverse('blog:post_list_by_category', args=[self.slug])
-
+    #this method uses the reverse function to generate a URL for the category's post list page based on its slug
 
 class Post(models.Model):
     """Model representing a blog post.

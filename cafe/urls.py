@@ -11,10 +11,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views
+from . import views # project-level views because they span multiple apps
 
 # Root URL dispatch table. The order matters: more specific routes
-# should appear before catch-all includes if necessary.
+# this means that routes defined earlier take precedence over later ones.
 urlpatterns = [
     path('admin/', admin.site.urls),
 

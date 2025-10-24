@@ -29,10 +29,10 @@ def submit_review(request):
     """
 
     # Only allow logged-in users to submit reviews
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated: #rejects anonymous users
         messages.error(request, 'You must be logged in to submit a review.')
-        return redirect('index')
-
+        return redirect('index') #redirect to home page
+ 
     if request.method == 'POST':
         # If a review for this user already exists, edit it; otherwise
         # create a new one.
@@ -42,7 +42,7 @@ def submit_review(request):
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Thank you! Your review has been updated.')
-                return redirect('index')
+                return redirect('index') #reirects to home page and confirms a success message
             else:
                 # If the form is invalid, provide some context to the
                 # index template and show an error message.
@@ -50,8 +50,8 @@ def submit_review(request):
                 messages.error(request, 'Please correct the errors below.')
                 return render(request, 'index.html', {'reviews': reviews})
 
-        except Review.DoesNotExist:
-            form = ReviewForm(request.POST)
+        except Review.DoesNotExist: #if no existing review is found, create a new one
+            form = ReviewForm(request.POST) #this will create a new form instance   
             if form.is_valid():
                 review = form.save(commit=False)
                 review.user = request.user

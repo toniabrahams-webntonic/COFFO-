@@ -35,6 +35,7 @@ class ReservationForm(forms.ModelForm):
     which can be filled with choices in the model or the form.
     """
 
+    # this defines reservation form as a model form based on Reservation model
     class Meta:
         model = Reservation
         fields = ['name', 'email', 'reservation_date', 'reservation_time', 'num_people']

@@ -6,7 +6,7 @@ applications (products, blog posts, categories, comments).
 """
 
 from django.shortcuts import render
-from django.db.models import Q
+from django.db.models import Q # Import Q for complex queries in search view.
 
 # Application models imported for data queries used in the views below.
 from cart.models import Product

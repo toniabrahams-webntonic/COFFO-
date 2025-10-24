@@ -9,7 +9,7 @@ from django.contrib import admin
 from .models import Product
 
 
-@admin.register(Product)
+@admin.register(Product) 
 class ProductAdmin(admin.ModelAdmin):
     # Columns displayed on the changelist page
     list_display = ['name', 'slug', 'price', 'available', 'created', 'updated']

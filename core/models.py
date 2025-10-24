@@ -27,7 +27,7 @@ class Review(models.Model):
     - user: optional FK to Django's User; set to NULL if the user is
       deleted to preserve the review content.
     - review: text body of the review.
-    - rating: integer choice from 1..5 using the RATING choices above.
+    - rating: integer choice from 1 to 5 using the RATING choices above.
     - date: timestamp of creation.
     """
 
@@ -67,11 +67,11 @@ class Contact(models.Model):
 class Reservation(models.Model):
     """Reservation made by a visitor including party size and timing."""
 
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
-    reservation_date = models.DateField()
-    reservation_time = models.TimeField()
-    num_people = models.IntegerField(
+    name = models.CharField(max_length=100) # Visitor's full name limited to 100 characters
+    email = models.EmailField() # Visitor's email address for contact email validation
+    reservation_date = models.DateField() # Date of the reservation
+    reservation_time = models.TimeField()   # Time of the reservation
+    num_people = models.IntegerField(   
         choices=[
             (1, '1 Person'),
             (2, '2 People'),
@@ -81,7 +81,7 @@ class Reservation(models.Model):
             (6, '6 People'),
         ],
         help_text="Number of people"
-    )
+    )   # Number of people in the reservation with choices
 
     class Meta:
         # Order reservations by date then time for sensible listing
@@ -89,3 +89,4 @@ class Reservation(models.Model):
 
     def __str__(self):
         return f'Reservation for {self.name} ({self.num_people} people) on {self.reservation_date} at {self.reservation_time}'
+        # String representation showing key details
